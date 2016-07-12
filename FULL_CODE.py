@@ -27,7 +27,7 @@ print field_list
 # For loop iterating through our tables and adding them to the shapefile "Lower_48"
 
 for Layer_Name in field_list:
-    arcpy.MakeFeatureLayer_management (inFeatures, names[i])
+    arcpy.MakeFeatureLayer_management (inFeatures, names[i]) #Temp
     arcpy.AddJoin_management(names[i], "STATE_FIPS", field_list[i], "STATE_FIPS", "KEEP_ALL")
     arcpy.SelectLayerByAttribute_management(names[i], "NEW_SELECTION")
     arcpy.CopyFeatures_management(inFeatures, names[i])
