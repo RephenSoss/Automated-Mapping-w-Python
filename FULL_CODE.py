@@ -11,11 +11,11 @@ import os
 
 arcpy.env.overwriteOutput = True
 
-env.workspace = "G:\Share\GEOG6293\Bakhtiari\ADD_LYR\Python_Project.gdb"
+env.workspace = "G:\Share\GEOG6293\ross\ADD_LYR\Python_Project.gdb"
 
 # Define Variables and List of Tables in our Geodatabase
 
-inFeatures = "G:\\Share\\GEOG6293\Bakhtiari\\ADD_LYR\Python_Project.gdb\\Lower_48_Blank"
+inFeatures = "G:\\Share\\GEOG6293\ross\\ADD_LYR\Python_Project.gdb\\Lower_48_Blank"
 i = 0
 layerName = "Lower_48"
 names = ["Y07_08","Y08_09","Y09_10","Y10_11","Y11_12","Y12_13","Y13_14"]
@@ -44,28 +44,28 @@ print "Complete"
 # Add the layer we just created to the premade maps
 
 AddLayer = []
-writeLog=open("G:\Share\GEOG6293\Bakhtiari\ADD_LYR"+"\FileListLog.txt","w")
-for fileName in os.listdir("G:\Share\GEOG6293\Bakhtiari\ADD_LYR"):
-    fullPath = os.path.join("G:\Share\GEOG6293\Bakhtiari\ADD_LYR", fileName)
+writeLog=open("G:\Share\GEOG6293\ross\ADD_LYR"+"\FileListLog.txt","w")
+for fileName in os.listdir("G:\Share\GEOG6293\ross\ADD_LYR"):
+    fullPath = os.path.join("G:\Share\GEOG6293\ross\ADD_LYR", fileName)
     if os.path.isfile(fullPath):
         basename, extension = os.path.splitext(fullPath)
         if extension == ".mxd":
-            writeLog.write("G:\Share\GEOG6293\Bakhtiari\ADD_LYR"+"\n")
+            writeLog.write("G:\Share\GEOG6293\ross\ADD_LYR"+"\n")
             mxd = arcpy.mapping.MapDocument(fullPath)
             AddLayer +=[fileName]
 print AddLayer
 
 i = 0
-Joined_Table = ["G:\Share\GEOG6293\Bakhtiari\ADD_LYR\Python_Project.gdb/Y07_08"
-,"G:\Share\GEOG6293\Bakhtiari\ADD_LYR\Python_Project.gdb/Y08_09",
-"G:\Share\GEOG6293\Bakhtiari\ADD_LYR\Python_Project.gdb/Y09_10",
-"G:\Share\GEOG6293\Bakhtiari\ADD_LYR\Python_Project.gdb/Y10_11",
-"G:\Share\GEOG6293\Bakhtiari\ADD_LYR\Python_Project.gdb/Y11_12",
-"G:\Share\GEOG6293\Bakhtiari\ADD_LYR\Python_Project.gdb/Y12_13",
-"G:\Share\GEOG6293\Bakhtiari\ADD_LYR\Python_Project.gdb/Y13_14"]
+Joined_Table = ["G:\Share\GEOG6293\ross\ADD_LYR\Python_Project.gdb/Y07_08"
+,"G:\Share\GEOG6293\ross\ADD_LYR\Python_Project.gdb/Y08_09",
+"G:\Share\GEOG6293\ross\ADD_LYR\Python_Project.gdb/Y09_10",
+"G:\Share\GEOG6293\ross\ADD_LYR\Python_Project.gdb/Y10_11",
+"G:\Share\GEOG6293\ross\ADD_LYR\Python_Project.gdb/Y11_12",
+"G:\Share\GEOG6293\ross\ADD_LYR\Python_Project.gdb/Y12_13",
+"G:\Share\GEOG6293\ross\ADD_LYR\Python_Project.gdb/Y13_14"]
 
 for stuff in AddLayer[0:7]:
-        path = "G:\\Share\\GEOG6293\\Bakhtiari\\ADD_LYR\\" + stuff
+        path = "G:\\Share\\GEOG6293\\ross\\ADD_LYR\\" + stuff
         mxd = arcpy.mapping.MapDocument(path)
         df = arcpy.mapping.ListDataFrames(mxd)[0]
         addLayer = arcpy.mapping.Layer(Joined_Table[i])
@@ -74,7 +74,7 @@ for stuff in AddLayer[0:7]:
         i = i+ 1
 
 for stuffs in AddLayer[8:14]:
-        path = "G:\\Share\\GEOG6293\\Bakhtiari\\ADD_LYR\\" + stuffs
+        path = "G:\\Share\\GEOG6293\\ross\\ADD_LYR\\" + stuffs
         mxd = arcpy.mapping.MapDocument(path)
         df = arcpy.mapping.ListDataFrames(mxd)[0]
         addLayer = arcpy.mapping.Layer(Joined_Table[i])
@@ -87,13 +87,13 @@ for stuffs in AddLayer[8:14]:
 
 
 Maps = []
-writeLog=open("G:\Share\GEOG6293\Bakhtiari\ADD_LYR"+"\FileListLog.txt","w")
-for fileName in os.listdir("G:\Share\GEOG6293\Bakhtiari\ADD_LYR"):
-    fullPath = os.path.join("G:\Share\GEOG6293\Bakhtiari\ADD_LYR", fileName)
+writeLog=open("G:\Share\GEOG6293\ross\ADD_LYR"+"\FileListLog.txt","w")
+for fileName in os.listdir("G:\Share\GEOG6293\ross\ADD_LYR"):
+    fullPath = os.path.join("G:\Share\GEOG6293\ross\ADD_LYR", fileName)
     if os.path.isfile(fullPath):
         basename, extension = os.path.splitext(fullPath)
         if extension == ".mxd":
-            writeLog.write("G:\Share\GEOG6293\Bakhtiari\ADD_LYR"+"\n")
+            writeLog.write("G:\Share\GEOG6293\ross\ADD_LYR"+"\n")
             mxd = arcpy.mapping.MapDocument(fullPath)
             Maps +=[fileName]
 print Maps
@@ -104,8 +104,8 @@ names = ["B_07.pdf","B_08.pdf","B_09.pdf","B_10.pdf","B_11.pdf",
 ,"G_11.pdf","G_12.pdf","G_13.pdf"]
 
 for mxd_name in Maps:
-     path = "G:\\Share\\GEOG6293\\Bakhtiari\\ADD_LYR\\" + mxd_name
-     outpath ="G:\Share\GEOG6293\Bakhtiari\ADD_LYR\Outputs\\" + names[i]
+     path = "G:\\Share\\GEOG6293\\ross\\ADD_LYR\\" + mxd_name
+     outpath ="G:\Share\GEOG6293\ross\ADD_LYR\Outputs\\" + names[i]
      mxd = arcpy.mapping.MapDocument(path)
      arcpy.mapping.ExportToPDF(mxd, names[i])
      i = i+ 1
