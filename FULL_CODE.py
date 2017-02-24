@@ -1,10 +1,4 @@
-# Stephen Ross
-# Automated Mapping Project
-
-
-
 # Import Modules and set current workspace
-
 import arcpy
 from arcpy import env
 import os
@@ -14,18 +8,16 @@ arcpy.env.overwriteOutput = True
 env.workspace = "G:\Share\GEOG6293\ross\ADD_LYR\Python_Project.gdb"
 
 # Define Variables and List of Tables in our Geodatabase
-
 inFeatures = "G:\\Share\\GEOG6293\ross\\ADD_LYR\Python_Project.gdb\\Lower_48_Blank"
 i = 0
 layerName = "Lower_48"
 names = ["Y07_08","Y08_09","Y09_10","Y10_11","Y11_12","Y12_13","Y13_14"]
 field_list = arcpy.ListTables()
-
 print names
 print field_list
 
-# For loop iterating through our tables and adding them to the shapefile "Lower_48"
 
+# For loop iterating through our tables and adding them to the shapefile "Lower_48"
 for Layer_Name in field_list:
     arcpy.MakeFeatureLayer_management (inFeatures, names[i]) #Temp
     arcpy.AddJoin_management(names[i], "STATE_FIPS", field_list[i], "STATE_FIPS", "KEEP_ALL")
@@ -37,9 +29,7 @@ print "This is the list of newly joined tables."
 LF = arcpy.ListFeatureClasses()
 print LF
 
-
 print "Complete"
-#%%
 
 # Add the layer we just created to the premade maps
 
